@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Prism.Application\Prism.Application.csproj" />
+  </ItemGroup>
+
 </Project>

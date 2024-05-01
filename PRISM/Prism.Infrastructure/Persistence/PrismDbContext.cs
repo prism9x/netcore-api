@@ -21,10 +21,32 @@ namespace Prism.Infrastructure.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            #region -- Product Table --
+
             modelBuilder.Entity<Product>()
-                        .HasOne(p => p.Category) // chỉ ra một product có 1 category
-                        .WithMany(c => c.Products) // chỉ ra một category thì có nhiều product
-                        .HasForeignKey(p => p.CategoryId); // chỉ ra khóa ngoại của chúng là CategoryId trong bảng Products
+                        .HasKey(p => p.Id); // Khóa chính
+
+            modelBuilder.Entity<Product>()
+                        .Property(p => p.Id)
+                        .ValueGeneratedOnAdd();  // Khóa tự tăng
+
+            modelBuilder.Entity<Product>()
+                        .HasOne(p => p.Category)
+                        .WithMany(c => c.Products)
+                        .HasForeignKey(p => p.CategoryId); // Đặt khóa ngoại của Product là CategoryId
+
+            #endregion -- Product Table --
+
+            #region -- Category Table --
+            modelBuilder.Entity<Category>()
+                        .HasKey(c => c.Id); // Khóa chính
+
+            modelBuilder.Entity<Category>()
+                        .Property(p => p.Id)
+                        .ValueGeneratedOnAdd();  // Khóa tự tăng
+
+            #endregion -- Category Table --
+
         }
     }
 }

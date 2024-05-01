@@ -1,3 +1,4 @@
+using Prism.Application.Extensions;
 using Prism.Infrastructure.Extensions;
 using Prism.Infrastructure.Seeders;
 
@@ -11,6 +12,7 @@ namespace Prism.API
 
             // Add services to the container.
             builder.Services.AddInfrastructure(builder.Configuration);
+            builder.Services.AddApplication();
 
 
 
